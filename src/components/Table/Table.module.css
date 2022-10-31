@@ -1,0 +1,145 @@
+.container {
+    padding-top: 25px;
+    position: relative;
+    width: 295px;
+    margin: 0 auto;
+}
+
+.table {
+    width: 295px;
+    border: 1px solid red;
+}
+
+.thStatus {
+    position: relative;
+    padding-left: 18px;
+    padding-right: 8px;
+}
+
+.thGoods {
+    position: relative;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.thId {
+    position: relative;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.thName {
+    position: relative;
+    padding-left: 8px;
+    padding-right: 17px;
+}
+
+.input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    height: 15px;
+}
+
+.inputName {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    height: 15px;
+}
+
+.icon {
+    position: absolute;
+    top: 28px;
+    right: 4px;
+    width: 9px;
+    color: #515151;
+}
+
+.iconName {
+    position: absolute;
+    top: 28px;
+    right: 12px;
+    width: 9px;
+    color: #515151;
+}
+
+.inputName:focus {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    height: 15px;
+    outline: none;
+}
+
+.modal {
+    position: absolute;
+    height: 117px;
+    max-width: 103px;
+    overflow: scroll;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 9px rgba(0, 0, 0, 0.15);
+    right: 0;
+    padding: 6px 19px;
+}
+
+.item {
+    display: flex;
+    height: 16px;
+}
+
+.text {
+    font-family: 'Raleway';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.14;
+    color: #000000;
+}
+
+.text:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.btnContainer {
+    position: absolute;
+    right: -25px;
+    top: 27px;
+    display: flex;
+    flex-direction: column;
+}
+
+.plus {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(0, 0, 0, 0.65);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.delete {
+    width: 14px;
+    height: 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.plusIcon {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 15px;
+}
+
+.deleteIcon {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+}
