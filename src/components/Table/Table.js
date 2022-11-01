@@ -6,8 +6,6 @@ import dataJson from "../data.json";
 import s from "./Table.module.css";
 import image from "../image/Group.png";
 
-const bodyEl = document.querySelector("body");
-
 function Table() {
   const [data, setData] = useState(dataJson);
   const [selectValue, setSelectValue] = useState(
@@ -20,22 +18,11 @@ function Table() {
   const [inputId, setInputId] = useState("");
   const [newInputName, setNewInputName] = useState("");
   const [isShowPlus, setIsShowPlus] = useState(false);
-  // const [input, setInput] = useState(false);
+  const [focus, setFocus] = useState("off");
 
   useEffect(() => {
     setSelectValue(data.map(({ Название }) => Название));
-    const handleModal = ({ target }) => {
-      if (!selectShow && target.id === "Название") {
-        return setSelectShow(true);
-      }
-      if (target.id === "modal" || target.id === "modal-text") return;
-      setSelectShow(false);
-    };
-    bodyEl.addEventListener("click", handleModal);
-    if (isShowPlus) {
-      return bodyEl.removeEventListener("click", handleModal);
-    }
-  }, [data, isShowPlus, selectShow]);
+  }, [data]);
 
   const newData = {
     Статус: checkbox,
@@ -47,6 +34,18 @@ function Table() {
 
   const handleChange = ({ target: { value } }) => {
     setInputName(value.trim());
+    if (value.trim() === "") {
+      return setData(dataJson);
+    }
+
+    const updateData = data.filter((item) => {
+      if (item.Название.includes(value)) {
+        return item;
+      }
+      return null;
+    });
+
+    setData(updateData);
   };
 
   const handlePlus = () => {
@@ -80,7 +79,11 @@ function Table() {
   };
 
   const handleEnter = (e) => {
-    if (e.code === "Enter" && e.target.id === "newInputName") {
+    if (
+      e.code === "Enter" &&
+      e.target.id === "newInputName" &&
+      inputId.length <= 3
+    ) {
       setIsShowPlus(false);
       setData((prevState) => [newData, ...prevState]);
       setInputId("");
@@ -95,6 +98,7 @@ function Table() {
   };
 
   const handleAllDelete = () => {
+    setInputName("");
     const updateDate = data.filter((item) => {
       if (item.Статус) {
         return item;
@@ -114,24 +118,31 @@ function Table() {
     setData(updateDate);
   };
 
-  const handleUpdateText = (e) => {
-    console.log(e);
-    const updateDate = data.map((item) => {
-      if (Number(e.target.id) === item.ID) {
-        return { ...item, Название: e.target.value };
-      }
-      return item;
-    });
+  const statusDelete = data.find((item) => item.Статус === false);
 
-    console.log(updateDate);
+  const handleNameFilter = (e) => {
+    if (e.target.id === "Все") {
+      setData(dataJson);
+      return setInputName("");
+    } else {
+      const updateDate = data.filter((item) => {
+        if (e.target.id === item.Название) {
+          return item;
+        }
+        return null;
+      });
+      setData(updateDate);
+      return setInputName(e.target.id);
+    }
   };
+
 
   return (
     <div className={s.container}>
       <table
         className={s.table}
-        onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}
+        onMouseEnter={() => (setIsShown(true), setFocus("on"))}
+        onMouseLeave={() => (setIsShown(false), setFocus("off"))}
         cellSpacing="0"
         cellPadding="0"
       >
@@ -177,30 +188,48 @@ function Table() {
                 className={s.inputName}
                 id="Название"
                 autoComplete="off"
+                onMouseEnter={() => setSelectShow(true)}
+                onMouseLeave={() => setSelectShow(false)}
               />
               {isShown && <AiFillCaretDown className={s.iconName} />}
-              {selectShow && (
-                <div className={s.modal} id="modal">
-                  <ul className={s.list}>
-                    <li className={s.item}>
-                      <p className={s.text} id="modal-text">
-                        Все
-                      </p>
-                    </li>
-                    {selectValue.map((item, index) => {
-                      return (
-                        <li key={index} className={s.item}>
-                          <p className={s.text} id="modal-text">
-                            {item.length > 7
-                              ? item.split("").splice(0, 8).join("") + "..."
-                              : item}
-                          </p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+              <div
+                className={s.modal}
+                style={{
+                  opacity: selectShow && 1,
+                  pointerEvents: selectShow && "auto",
+                  transform: selectShow && "translateX(0%)",
+                  transition:
+                    selectShow &&
+                    "transform 700ms ease-in-out,opacity 1000ms ease-in-out",
+                }}
+                id="modal"
+                onMouseEnter={() => setSelectShow(true)}
+                onMouseLeave={() => setSelectShow(false)}
+              >
+                <ul className={s.list}>
+                  <li className={s.item} onClick={handleNameFilter} id="Все">
+                    <p className={s.text} id="Все">
+                      Все
+                    </p>
+                  </li>
+                  {selectValue.map((item, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className={s.item}
+                        onClick={handleNameFilter}
+                        id={item}
+                      >
+                        <p className={s.text} id={item}>
+                          {item.length > 7
+                            ? item.split("").splice(0, 8).join("") + "..."
+                            : item}
+                        </p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </th>
           </tr>
         </thead>
@@ -208,6 +237,7 @@ function Table() {
           {isShowPlus && (
             <tr className={s.newTr}>
               <td className={s.newTdStatus}>
+                <div className={s.span}></div>
                 <div className={s.containerCheck}>
                   {checkbox ? (
                     <div className={s.customCheckLeft}></div>
@@ -256,7 +286,7 @@ function Table() {
             return (
               <tr className={s.newTr} key={ID}>
                 <td className={s.newTdStatus}>
-                  <span className={s.span}></span>
+                  <div className={s.span}></div>
                   <div
                     className={s.containerCheck}
                     id={ID}
@@ -283,11 +313,7 @@ function Table() {
                 <td className={s.newTdName} onKeyDown={handleEnter}>
                   <img src={image} className={s.img} alt="" />
                   {Название ? (
-                    <p
-                      className={s.textName}
-                      onClick={handleUpdateText}
-                      id={ID}
-                    >
+                    <p className={s.textName} id={ID}>
                       {Название.length > 7
                         ? Название.split("").splice(0, 7).join("") + "..."
                         : Название}
@@ -317,7 +343,7 @@ function Table() {
         <div className={s.plus}>
           <BsPlus className={s.plusIcon} onClick={handlePlus} />
         </div>
-        {data.length ? (
+        {statusDelete ? (
           <div className={s.delete}>
             <CgClose className={s.deleteIcon} onClick={handleAllDelete} />
           </div>

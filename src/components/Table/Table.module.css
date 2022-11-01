@@ -90,20 +90,38 @@
 
 .modal {
     position: absolute;
+    right: 10px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 700ms ease-in-out, opacity 1000ms ease-in-out;
     height: 117px;
     max-width: 103px;
+    pointer-events: none;
     overflow: scroll;
     overflow-x: hidden;
     background: #FFFFFF;
     box-shadow: 4px 4px 9px rgba(0, 0, 0, 0.15);
-    right: 0;
     padding: 6px 19px;
     z-index: 2;
+}
+
+.modal::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background-color: #843465;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
 }
 
 .item {
     display: flex;
     height: 16px;
+    cursor: pointer;
+    width: 100%;
 }
 
 .text {
@@ -131,13 +149,14 @@
     border-spacing: 0px;
 }
 
-.span:hover,
-.span:focus {
+.newTr:hover .span,
+.newTr:focus .span {
     position: absolute;
     left: 0;
     top: 0px;
+    z-index: 3;
     background-color: #515151;
-    height: 21px;
+    height: 21.5px;
     width: 8px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -261,7 +280,6 @@
     font-weight: 300;
     font-size: 14px;
     line-height: 1.14;
-    width: 100%;
     margin-bottom: auto;
     margin-top: auto;
     cursor: pointer;
