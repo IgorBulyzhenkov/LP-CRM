@@ -18,7 +18,6 @@ function Table() {
   const [inputId, setInputId] = useState("");
   const [newInputName, setNewInputName] = useState("");
   const [isShowPlus, setIsShowPlus] = useState(false);
-  const [focus, setFocus] = useState("off");
 
   useEffect(() => {
     setSelectValue(data.map(({ Название }) => Название));
@@ -141,8 +140,8 @@ function Table() {
     <div className={s.container}>
       <table
         className={s.table}
-        onMouseEnter={() => (setIsShown(true), setFocus("on"))}
-        onMouseLeave={() => (setIsShown(false), setFocus("off"))}
+        onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}
         cellSpacing="0"
         cellPadding="0"
       >
