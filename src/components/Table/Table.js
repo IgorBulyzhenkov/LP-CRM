@@ -102,7 +102,6 @@ function Table() {
       return null;
     });
     setData(updateDate);
-    console.log(updateDate);
   };
 
   const handleUpdateStatus = (e) => {
