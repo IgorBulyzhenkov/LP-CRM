@@ -3,84 +3,84 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 1,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "Синий"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 2,
-    "img": "./image/life.svg",
+    "img": "./image/Vector.png",
     "Название": "39-й рзмер"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 32,
-    "img": "./image/life.svg",
+    "img": "./image/Vector.png",
     "Название": "39,5-й размер"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 65,
-    "img": "./image/life.svg",
+    "img": "./image/Vector.png",
     "Название": "40-й размер"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 4,
-    "img": "./image/life.svg",
+    "img": "./image/Vector.png",
     "Название": "41-й размер"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 134,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "8Gb"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 7,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "16Gb"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 98,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "32Gb"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 6,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "Space grey"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 56,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "Rose gold"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 78,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "Silver"
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 135,
-    "img": "./image/kyivstar.svg",
+    "img": "./image/Group.png",
     "Название": "Silver"
   }
 ]
