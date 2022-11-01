@@ -6,11 +6,11 @@ import dataJson from "../data.json";
 import s from "./Table.module.css";
 import image from "../image/Group.png";
 
+// const bodyEl = document.querySelector("body");
+
 function Table() {
   const [data, setData] = useState(dataJson);
-  const [selectValue, setSelectValue] = useState(
-    data.map(({ Название }) => Название)
-  );
+  const [selectValue, setSelectValue] = useState(data.map(({ name }) => name));
   const [selectShow, setSelectShow] = useState(false);
   const [inputName, setInputName] = useState("");
   const [isShown, setIsShown] = useState(false);
@@ -18,9 +18,10 @@ function Table() {
   const [inputId, setInputId] = useState("");
   const [newInputName, setNewInputName] = useState("");
   const [isShowPlus, setIsShowPlus] = useState(false);
+  const [updateId, setUpdateId] = useState("");
 
   useEffect(() => {
-    setSelectValue(data.map(({ Название }) => Название));
+    setSelectValue(data.map(({ name }) => name));
   }, [data]);
 
   const newData = {
@@ -28,7 +29,7 @@ function Table() {
     Товар: "хххх-",
     ID: Number(inputId),
     img: "./image/kyivstar.svg",
-    Название: newInputName,
+    name: newInputName,
   };
 
   const handleChange = ({ target: { value } }) => {
@@ -38,7 +39,7 @@ function Table() {
     }
 
     const updateData = data.filter((item) => {
-      if (item.Название.toLowerCase().includes(value.toLowerCase())) {
+      if (item.name.toLowerCase().includes(value.toLowerCase())) {
         return item;
       }
       return null;
@@ -125,13 +126,44 @@ function Table() {
       return setInputName("");
     } else {
       const updateDate = data.filter((item) => {
-        if (e.target.id === item.Название) {
+        if (e.target.id === item.name) {
           return item;
         }
         return null;
       });
       setData(updateDate);
       return setInputName(e.target.id);
+    }
+  };
+
+  const handleUpdateText = (e) => {
+    const updateDate = data.map(({ ID, ...item }) => {
+      if (Number(e.target.id) === ID) {
+        setNewInputName(item.name);
+        setUpdateId(ID);
+        const newName = { ...item, ID, name: "" };
+        return newName;
+      }
+      return { ID, ...item };
+    });
+
+    return setData(updateDate);
+  };
+
+  const handleUpdateTextEnter = (e) => {
+    if (e.code === "Enter") {
+      console.log(e);
+      const updateDate = data.map(({ ID, ...item }) => {
+        if (Number(updateId) === ID) {
+          setNewInputName("");
+          const newName = { ...item, ID, name: newInputName };
+          console.log(newName);
+          return newName;
+        }
+        return { ID, ...item };
+      });
+      setUpdateId("");
+      return setData(updateDate);
     }
   };
 
@@ -184,7 +216,7 @@ function Table() {
                 value={inputName}
                 onChange={handleChange}
                 className={s.inputName}
-                id="Название"
+                id="name"
                 autoComplete="off"
                 onMouseEnter={() => setSelectShow(true)}
                 onMouseLeave={() => setSelectShow(false)}
@@ -280,7 +312,7 @@ function Table() {
               </td>
             </tr>
           )}
-          {data.map(({ Статус, Товар, ID, Название }) => {
+          {data.map(({ Статус, Товар, ID, name }) => {
             return (
               <tr className={s.newTr} key={ID}>
                 <td className={s.newTdStatus}>
@@ -305,16 +337,24 @@ function Table() {
                   </div>
                 </td>
                 <td className={s.newTd}>{Товар}</td>
-                <td className={s.newTdId} onKeyDown={handleEnter}>
+                <td className={s.newTdId} onKeyDown={handleUpdateTextEnter}>
                   {ID}
                 </td>
-                <td className={s.newTdName} onKeyDown={handleEnter}>
+                <td
+                  className={s.newTdName}
+                  id={ID}
+                  onKeyDown={handleUpdateTextEnter}
+                >
                   <img src={image} className={s.img} alt="" />
-                  {Название ? (
-                    <p className={s.textName} id={ID}>
-                      {Название.length > 7
-                        ? Название.split("").splice(0, 7).join("") + "..."
-                        : Название}
+                  {name ? (
+                    <p
+                      className={s.textName}
+                      id={ID}
+                      onClick={handleUpdateText}
+                    >
+                      {name.length > 7
+                        ? name.split("").splice(0, 7).join("") + "..."
+                        : name}
                     </p>
                   ) : (
                     <input
@@ -324,6 +364,7 @@ function Table() {
                       id="newInputName"
                       onChange={changeIdInput}
                       className={s.inputName}
+                      autoFocus="on"
                     />
                   )}
                   {isShown && (
