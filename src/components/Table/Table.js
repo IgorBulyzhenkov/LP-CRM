@@ -192,7 +192,7 @@ function Table() {
                         <li key={index} className={s.item}>
                           <p className={s.text} id="modal-text">
                             {item.length > 7
-                              ? item.split("").splice(0, 9).join("") + "..."
+                              ? item.split("").splice(0, 6).join("") + "..."
                               : item}
                           </p>
                         </li>
@@ -207,7 +207,7 @@ function Table() {
         <tbody>
           {isShowPlus && (
             <tr className={s.newTr}>
-              <td className={s.newTd}>
+              <td className={s.newTdStatus}>
                 <div className={s.containerCheck}>
                   {checkbox ? (
                     <div className={s.customCheckLeft}></div>
