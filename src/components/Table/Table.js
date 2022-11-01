@@ -192,7 +192,7 @@ function Table() {
                         <li key={index} className={s.item}>
                           <p className={s.text} id="modal-text">
                             {item.length > 7
-                              ? item.split("").splice(0, 6).join("") + "..."
+                              ? item.split("").splice(0, 8).join("") + "..."
                               : item}
                           </p>
                         </li>
