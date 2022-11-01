@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/lp-crm/static/css/main.81c557f1.css",
-    "main.js": "/lp-crm/static/js/main.10ea160a.js",
+    "main.css": "/lp-crm/static/css/main.4227670c.css",
+    "main.js": "/lp-crm/static/js/main.9b9c9e58.js",
     "index.html": "/lp-crm/index.html",
-    "main.81c557f1.css.map": "/lp-crm/static/css/main.81c557f1.css.map",
-    "main.10ea160a.js.map": "/lp-crm/static/js/main.10ea160a.js.map"
+    "main.4227670c.css.map": "/lp-crm/static/css/main.4227670c.css.map",
+    "main.9b9c9e58.js.map": "/lp-crm/static/js/main.9b9c9e58.js.map"
   },
   "entrypoints": [
-    "static/css/main.81c557f1.css",
-    "static/js/main.10ea160a.js"
+    "static/css/main.4227670c.css",
+    "static/js/main.9b9c9e58.js"
   ]
 }
