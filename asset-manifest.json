@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/lp-crm/static/css/main.4227670c.css",
-    "main.js": "/lp-crm/static/js/main.9b9c9e58.js",
+    "main.js": "/lp-crm/static/js/main.3c5772e0.js",
     "index.html": "/lp-crm/index.html",
     "main.4227670c.css.map": "/lp-crm/static/css/main.4227670c.css.map",
-    "main.9b9c9e58.js.map": "/lp-crm/static/js/main.9b9c9e58.js.map"
+    "main.3c5772e0.js.map": "/lp-crm/static/js/main.3c5772e0.js.map"
   },
   "entrypoints": [
     "static/css/main.4227670c.css",
-    "static/js/main.9b9c9e58.js"
+    "static/js/main.3c5772e0.js"
   ]
 }
