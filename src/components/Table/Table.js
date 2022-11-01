@@ -38,7 +38,7 @@ function Table() {
     }
 
     const updateData = data.filter((item) => {
-      if (item.Название.includes(value)) {
+      if (item.Название.toLowerCase().includes(value.toLowerCase())) {
         return item;
       }
       return null;
@@ -134,7 +134,6 @@ function Table() {
       return setInputName(e.target.id);
     }
   };
-
 
   return (
     <div className={s.container}>
