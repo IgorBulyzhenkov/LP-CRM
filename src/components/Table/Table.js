@@ -20,7 +20,7 @@ function Table() {
   const [inputId, setInputId] = useState("");
   const [newInputName, setNewInputName] = useState("");
   const [isShowPlus, setIsShowPlus] = useState(false);
-  const [input, setInput] = useState(false);
+  // const [input, setInput] = useState(false);
 
   useEffect(() => {
     setSelectValue(data.map(({ Название }) => Название));
@@ -99,9 +99,10 @@ function Table() {
       if (item.Статус) {
         return item;
       }
-      return;
+      return null;
     });
     setData(updateDate);
+    console.log(updateDate);
   };
 
   const handleUpdateStatus = (e) => {
@@ -122,6 +123,8 @@ function Table() {
       }
       return item;
     });
+
+    console.log(updateDate);
   };
 
   return (
