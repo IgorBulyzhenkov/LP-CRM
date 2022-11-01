@@ -152,12 +152,10 @@ function Table() {
 
   const handleUpdateTextEnter = (e) => {
     if (e.code === "Enter") {
-      console.log(e);
       const updateDate = data.map(({ ID, ...item }) => {
         if (Number(updateId) === ID) {
           setNewInputName("");
           const newName = { ...item, ID, name: newInputName };
-          console.log(newName);
           return newName;
         }
         return { ID, ...item };

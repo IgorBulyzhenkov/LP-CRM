@@ -64,6 +64,11 @@
     height: 15px;
 }
 
+.newTr:hover .inputName,
+.newTr:hover .inputId {
+    background-color: #CACACA;
+}
+
 .icon {
     position: absolute;
     top: 17px;
