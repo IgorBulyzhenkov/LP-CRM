@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
@@ -6,11 +6,12 @@ import dataJson from "../data.json";
 import s from "./Table.module.css";
 import image from "../image/Group.png";
 
-// const bodyEl = document.querySelector("body");
-
 function Table() {
   const [data, setData] = useState(dataJson);
-  const [selectValue, setSelectValue] = useState(data.map(({ name }) => name));
+  const [selectValue, setSelectValue] = useState(
+    dataJson.map(({ name }) => name)
+  );
+  const [filterData, setFilterData] = useState(dataJson);
   const [selectShow, setSelectShow] = useState(false);
   const [inputName, setInputName] = useState("");
   const [isShown, setIsShown] = useState(false);
@@ -20,9 +21,10 @@ function Table() {
   const [isShowPlus, setIsShowPlus] = useState(false);
   const [updateId, setUpdateId] = useState("");
 
-  useEffect(() => {
-    setSelectValue(data.map(({ name }) => name));
-  }, [data]);
+  // console.log(data);
+  // useEffect(() => {
+  //   setSelectValue(dataJson.map(({ name }) => name));
+  // }, [data]);
 
   const newData = {
     Статус: checkbox,
@@ -86,8 +88,10 @@ function Table() {
     ) {
       setIsShowPlus(false);
       setData((prevState) => [newData, ...prevState]);
+      setSelectValue((prevState) => [newData.name, ...prevState]);
       setInputId("");
       setNewInputName("");
+      setFilterData((prevState) => [newData, ...prevState]);
     }
   };
 
@@ -123,9 +127,10 @@ function Table() {
   const handleNameFilter = (e) => {
     if (e.target.id === "Все") {
       setData(dataJson);
+      setSelectValue(dataJson.map(({ name }) => name));
       return setInputName("");
     } else {
-      const updateDate = data.filter((item) => {
+      const updateDate = filterData.filter((item) => {
         if (e.target.id === item.name) {
           return item;
         }
@@ -194,7 +199,7 @@ function Table() {
                 className={s.input}
                 disabled={true}
               />
-              {isShown && <AiFillCaretDown className={s.icon} />}
+              {isShown && <AiFillCaretDown className={s.iconGoods} />}
             </th>
             <th className={s.thId}>
               ID
@@ -249,8 +254,8 @@ function Table() {
                         id={item}
                       >
                         <p className={s.text} id={item}>
-                          {item.length > 7
-                            ? item.split("").splice(0, 8).join("") + "..."
+                          {item.length > 15
+                            ? item.split("").splice(0, 16).join("") + "..."
                             : item}
                         </p>
                       </li>
@@ -304,17 +309,36 @@ function Table() {
                   onChange={changeIdInput}
                   className={s.inputName}
                 />
-                <div onClick={clickDelete} className={s.btnDelete}>
-                  x
-                </div>
+                {isShown && (
+                  <CgClose onClick={clickDelete} className={s.btnDelete} />
+                )}
               </td>
             </tr>
           )}
           {data.map(({ Статус, Товар, ID, name }) => {
             return (
-              <tr className={s.newTr} key={ID}>
+              <tr
+                className={s.newTr}
+                key={ID}
+                style={{
+                  backgroundColor: name ? null : "rgba(81, 81, 81, 0.7)",
+                }}
+              >
                 <td className={s.newTdStatus}>
-                  <div className={s.span}></div>
+                  <div
+                    className={s.span}
+                    style={{
+                      backgroundColor: name ? null : "#515151",
+                      position: name ? null : "absolute",
+                      left: name ? null : 0,
+                      top: name ? null : 0,
+                      zIndex: name ? null : 3,
+                      height: name ? null : "21.5px",
+                      width: name ? null : "8px",
+                      borderTopLeftRadius: name ? null : "5px",
+                      borderBottomLeftRadius: name ? null : "5px",
+                    }}
+                  ></div>
                   <div
                     className={s.containerCheck}
                     id={ID}
@@ -334,9 +358,12 @@ function Table() {
                     />
                   </div>
                 </td>
-                <td className={s.newTd}>{Товар}</td>
+                <td className={s.newTd}>
+                  <p className={s.tdGrove}></p>
+                  {Товар}
+                </td>
                 <td className={s.newTdId} onKeyDown={handleUpdateTextEnter}>
-                  {ID}
+                  <p className={s.tdText}>{ID}</p>
                 </td>
                 <td
                   className={s.newTdName}
@@ -350,8 +377,8 @@ function Table() {
                       id={ID}
                       onClick={handleUpdateText}
                     >
-                      {name.length > 7
-                        ? name.split("").splice(0, 7).join("") + "..."
+                      {name.length > 11
+                        ? name.split("").splice(0, 12).join("") + "..."
                         : name}
                     </p>
                   ) : (
@@ -363,12 +390,17 @@ function Table() {
                       onChange={changeIdInput}
                       className={s.inputName}
                       autoFocus="on"
+                      style={{
+                        backgroundColor: "transparent",
+                      }}
                     />
                   )}
                   {isShown && (
-                    <div onClick={handleDelete} className={s.btnDelete} id={ID}>
-                      x
-                    </div>
+                    <CgClose
+                      onClick={handleDelete}
+                      className={s.btnDelete}
+                      id={ID}
+                    />
                   )}
                 </td>
               </tr>
