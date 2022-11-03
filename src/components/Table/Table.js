@@ -8,9 +8,6 @@ import image from "../image/Group.png";
 
 function Table() {
   const [data, setData] = useState(dataJson);
-  const [selectValue, setSelectValue] = useState(
-    dataJson.map(({ name }) => name)
-  );
   const [filterData, setFilterData] = useState(dataJson);
   const [selectShow, setSelectShow] = useState(false);
   const [inputName, setInputName] = useState("");
@@ -21,17 +18,13 @@ function Table() {
   const [isShowPlus, setIsShowPlus] = useState(false);
   const [updateId, setUpdateId] = useState("");
 
-  // console.log(data);
-  // useEffect(() => {
-  //   setSelectValue(dataJson.map(({ name }) => name));
-  // }, [data]);
-
   const newData = {
     Статус: checkbox,
     Товар: "хххх-",
     ID: Number(inputId),
     img: "./image/kyivstar.svg",
     name: newInputName,
+    check: false,
   };
 
   const handleChange = ({ target: { value } }) => {
@@ -88,7 +81,6 @@ function Table() {
     ) {
       setIsShowPlus(false);
       setData((prevState) => [newData, ...prevState]);
-      setSelectValue((prevState) => [newData.name, ...prevState]);
       setInputId("");
       setNewInputName("");
       setFilterData((prevState) => [newData, ...prevState]);
@@ -126,18 +118,33 @@ function Table() {
 
   const handleNameFilter = (e) => {
     if (e.target.id === "Все") {
-      setData(dataJson);
-      setSelectValue(dataJson.map(({ name }) => name));
+      const updateDate = filterData.map(({ checked, ...item }) => {
+        if (checked === true) {
+          const newItem = { ...item, checked: false };
+          return newItem;
+        }
+        return { checked, ...item };
+      });
+      setData(updateDate);
+      setFilterData(updateDate);
       return setInputName("");
     } else {
-      const updateDate = filterData.filter((item) => {
+      const updateDate = filterData.map(({ checked, ...item }) => {
         if (e.target.id === item.name) {
+          const newItem = { ...item, checked: e.target.checked };
+          return newItem;
+        }
+        return { checked, ...item };
+      });
+      setFilterData(updateDate);
+      const newData = updateDate.filter((item) => {
+        if (item.checked === true) {
           return item;
         }
         return null;
       });
-      setData(updateDate);
-      return setInputName(e.target.id);
+      setData(newData);
+      return setInputName(newData.map((item) => item.name));
     }
   };
 
@@ -240,24 +247,40 @@ function Table() {
                 onMouseLeave={() => setSelectShow(false)}
               >
                 <ul className={s.list}>
-                  <li className={s.item} onClick={handleNameFilter} id="Все">
+                  <li
+                    className={s.item}
+                    onClick={handleNameFilter}
+                    id="Все"
+                    style={{ marginLeft: "20px" }}
+                  >
                     <p className={s.text} id="Все">
                       Все
                     </p>
                   </li>
-                  {selectValue.map((item, index) => {
+                  {filterData.map(({ name, ID, checked }) => {
                     return (
                       <li
-                        key={index}
+                        key={ID}
                         className={s.item}
-                        onClick={handleNameFilter}
-                        id={item}
+                        onClick={checked ? null : handleNameFilter}
+                        id={name}
+                        style={{
+                          marginLeft: !checked && "20px",
+                        }}
                       >
-                        <p className={s.text} id={item}>
-                          {item.length > 15
-                            ? item.split("").splice(0, 16).join("") + "..."
-                            : item}
+                        {checked && <div className={s.dot}></div>}
+                        <p className={s.text} id={name}>
+                          {name.length > 15
+                            ? name.split("").splice(0, 16).join("") + "..."
+                            : name}
                         </p>
+                        <input
+                          type="checkbox"
+                          name="checkbox"
+                          className={s.checkFilter}
+                          style={{ cursor: checked && "auto" }}
+                          id={name}
+                        />
                       </li>
                     );
                   })}

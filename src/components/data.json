@@ -4,83 +4,95 @@
     "Товар": "хххх-",
     "ID": 1,
     "img": "./image/Group.png",
-    "name": "Синий"
+    "name": "Синий",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 2,
     "img": "./image/Vector.png",
-    "name": "39-й рзмер"
+    "name": "39-й рзмер",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 32,
     "img": "./image/Vector.png",
-    "name": "39,5-й размер"
+    "name": "39,5-й размер",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 65,
     "img": "./image/Vector.png",
-    "name": "40-й размер"
+    "name": "40-й размер",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 4,
     "img": "./image/Vector.png",
-    "name": "41-й размер"
+    "name": "41-й размер",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 134,
     "img": "./image/Group.png",
-    "name": "8Gb"
+    "name": "8Gb",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 7,
     "img": "./image/Group.png",
-    "name": "16Gb"
+    "name": "16Gb",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 98,
     "img": "./image/Group.png",
-    "name": "32Gb"
+    "name": "32Gb",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 6,
     "img": "./image/Group.png",
-    "name": "Space grey"
+    "name": "Space grey",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 56,
     "img": "./image/Group.png",
-    "name": "Rose gold"
+    "name": "Rose gold",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 78,
     "img": "./image/Group.png",
-    "name": "Silver"
+    "name": "Silver",
+    "checked": false
   },
   {
     "Статус": false,
     "Товар": "хххх-",
     "ID": 135,
     "img": "./image/Group.png",
-    "name": "Silver"
+    "name": "Silver",
+    "checked": false
   }
 ]
