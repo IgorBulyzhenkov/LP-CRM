@@ -3,7 +3,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 1,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "Синий",
     "checked": false
   },
@@ -11,7 +11,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 2,
-    "img": "./image/Vector.png",
+    "img": "https://i.postimg.cc/hGqmSdG9/Vector.png",
     "name": "39-й рзмер",
     "checked": false
   },
@@ -19,7 +19,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 32,
-    "img": "./image/Vector.png",
+    "img": "https://i.postimg.cc/hGqmSdG9/Vector.png",
     "name": "39,5-й размер",
     "checked": false
   },
@@ -27,7 +27,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 65,
-    "img": "./image/Vector.png",
+    "img": "https://i.postimg.cc/hGqmSdG9/Vector.png",
     "name": "40-й размер",
     "checked": false
   },
@@ -35,7 +35,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 4,
-    "img": "./image/Vector.png",
+    "img": "https://i.postimg.cc/hGqmSdG9/Vector.png",
     "name": "41-й размер",
     "checked": false
   },
@@ -43,7 +43,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 134,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "8Gb",
     "checked": false
   },
@@ -51,7 +51,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 7,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "16Gb",
     "checked": false
   },
@@ -59,7 +59,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 98,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "32Gb",
     "checked": false
   },
@@ -67,7 +67,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 6,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "Space grey",
     "checked": false
   },
@@ -75,7 +75,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 56,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "Rose gold",
     "checked": false
   },
@@ -83,7 +83,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 78,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "Silver",
     "checked": false
   },
@@ -91,7 +91,7 @@
     "Статус": false,
     "Товар": "хххх-",
     "ID": 135,
-    "img": "./image/Group.png",
+    "img": "https://i.postimg.cc/Pr5kPXx9/Group-1.png",
     "name": "Silver",
     "checked": false
   }

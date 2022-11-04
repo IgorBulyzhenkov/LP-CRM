@@ -3,6 +3,7 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { BsPlus } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import dataJson from "../data.json";
+import dataImg from "../img.json";
 import s from "./Table.module.css";
 import image from "../image/Group.png";
 
@@ -17,12 +18,13 @@ function Table() {
   const [newInputName, setNewInputName] = useState("");
   const [isShowPlus, setIsShowPlus] = useState(false);
   const [updateId, setUpdateId] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const newData = {
     Статус: checkbox,
     Товар: "хххх-",
     ID: Number(inputId),
-    img: "./image/kyivstar.svg",
+    img: image,
     name: newInputName,
     check: false,
   };
@@ -71,6 +73,7 @@ function Table() {
       return item.ID !== Number(e.target.id);
     });
     setData(updateDate);
+    setFilterData(updateDate);
   };
 
   const handleEnter = (e) => {
@@ -158,7 +161,7 @@ function Table() {
       }
       return { ID, ...item };
     });
-
+    setShowModal(true);
     return setData(updateDate);
   };
 
@@ -175,6 +178,18 @@ function Table() {
       setUpdateId("");
       return setData(updateDate);
     }
+  };
+
+  const handleImgClick = (e) => {
+    const updateImg = data.map(({ img, ...item }) => {
+      if (item.ID === updateId) {
+        const newImg = { img: e.target.id, ...item };
+        return newImg;
+      }
+      return { img, ...item };
+    });
+    setData(updateImg);
+    setShowModal(false);
   };
 
   return (
@@ -338,7 +353,7 @@ function Table() {
               </td>
             </tr>
           )}
-          {data.map(({ Статус, Товар, ID, name }) => {
+          {data.map(({ Статус, Товар, ID, name, img }) => {
             return (
               <tr
                 className={s.newTr}
@@ -393,7 +408,7 @@ function Table() {
                   id={ID}
                   onKeyDown={handleUpdateTextEnter}
                 >
-                  <img src={image} className={s.img} alt="" />
+                  <img src={img ? img : image} className={s.img} alt="" />
                   {name ? (
                     <p
                       className={s.textName}
@@ -405,18 +420,39 @@ function Table() {
                         : name}
                     </p>
                   ) : (
-                    <input
-                      type="text"
-                      name="newInputName"
-                      value={newInputName}
-                      id="newInputName"
-                      onChange={changeIdInput}
-                      className={s.inputName}
-                      autoFocus="on"
-                      style={{
-                        backgroundColor: "transparent",
-                      }}
-                    />
+                    <>
+                      <input
+                        type="text"
+                        name="newInputName"
+                        value={newInputName}
+                        id="newInputName"
+                        onChange={changeIdInput}
+                        className={s.inputName}
+                        autoFocus="on"
+                        style={{
+                          backgroundColor: "transparent",
+                        }}
+                      />
+                      {showModal ? (
+                        <div className={s.imgModal} id="modalImg">
+                          <ul className={s.imgList}>
+                            {dataImg.map(({ img, id }) => {
+                              return (
+                                <li className={s.imgItem} key={id}>
+                                  <img
+                                    src={img}
+                                    alt=""
+                                    className={s.image}
+                                    onClick={handleImgClick}
+                                    id={img}
+                                  />
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      ) : null}
+                    </>
                   )}
                   {isShown && (
                     <CgClose
